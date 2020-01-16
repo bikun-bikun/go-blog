@@ -16,12 +16,15 @@ func main() {
 	}
 	defer db.Close()
 
+	//ログを標準出力で出力してくれる。
+	//デバッグ実装のときは入れておくと何を発行しているかわかりやすいと思う。
 	db.LogMode(true)
 
+	//AutoMigration機能、デバッグ実装なのでこれでMigrationしているけど本実装ではきちんとしたMigrationツールを使ったほうが良さそう。
 	db.AutoMigrate(&User{}, &Profile{}, &Repository{})
 
 	var u = User{
-		Name: "たろう",
+		Name: "taro",
 		Profile: Profile{
 			Repositories: []Repository{
 				{
